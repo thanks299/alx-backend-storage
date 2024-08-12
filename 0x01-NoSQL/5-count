@@ -1,2 +1,2 @@
-// Display the number of documents in the school collection
-db.school.countDocuments();
+// Counts the documents in the school collection.
+db.school.find().count();
