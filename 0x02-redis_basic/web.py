@@ -10,6 +10,7 @@ from typing import Callable
 # Initialize Redis
 redis_store = redis.Redis()
 
+
 def data_cacher(method: Callable) -> Callable:
     '''Decorator to cache the output of fetched data and track URL access.'''
     @wraps(method)
@@ -30,6 +31,7 @@ def data_cacher(method: Callable) -> Callable:
         redis_store.setex(f'result:{url}', 10, result)
         return result
     return invoker
+
 
 @data_cacher
 def get_page(url: str) -> str:
